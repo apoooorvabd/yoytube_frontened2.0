@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Card_for_vd0 from "./ui/Card_for_vd0";
-import  allvdo  from "./allvdo"
+import  allvdo  from "./allvdo" 
+import AllVdo from "./AllVdo";
 
 function Hero() {
 
   return (
-    <div className="w-full min-h-screen bg-gray-100">
+    <div className="w-full min-h-screen bg-gray-100 z-10">
       
       {/* Navbar */}
       <Navbar />
@@ -37,15 +38,9 @@ function Hero() {
           </div>
         </div>
       </section>
-
       {/* Video Cards Section */}
-      <section className="container mx-auto px-6 py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {allvdo.map((video) => (
-            <Card_for_vd0 key={video.id} video={video} />
-          ))}
-        </div>
-      </section>
+      <AllVdo />
+      
 
     </div>
   );

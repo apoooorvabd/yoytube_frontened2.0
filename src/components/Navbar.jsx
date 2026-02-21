@@ -1,7 +1,10 @@
 import { Button } from "./ui/button";
+import { useContext } from "react";
+import { DataContext } from "../UserContext";
 
 function Navbar() {
   // Navbar for a video sharing platform
+  const { sigup, setSignup } = useContext(DataContext);
   return (
     <nav className="flex items-center justify-between p-4 bg-blue-50 text-gray-100 shadow-md">
       
@@ -35,6 +38,7 @@ function Navbar() {
         {/* Sign In Button */}
         <li>
           <Button variant="default" className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 shadow-md"
+           onClick={()=>setSignup(true)}
           >
             Sign In
           </Button>
