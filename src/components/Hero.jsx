@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Card_for_vd0 from "./ui/Card_for_vd0";
-import  allvdo  from "./allvdo" 
 import AllVdo from "./AllVdo";
 
 function Hero() {
@@ -28,13 +27,21 @@ function Hero() {
             
           </div>
 
-          {/* Right Side (Optional Image Placeholder) */}
-          <div className="flex-1">
-            <img
-              src="/hero.jfif"
-              alt="Hero"
-              className="w-full max-w-lg mx-auto rounded-xl shadow-2xl"
-            />
+          {/* Right Side (Video with image fallback) */}
+          <div className="flex-1 flex justify-center items-center">
+            <div className="w-full max-w-lg mx-auto rounded-xl shadow-2xl overflow-hidden">
+              <video
+                className="w-full h-full object-cover"
+                src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/hero.jfif"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
       </section>
