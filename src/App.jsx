@@ -6,21 +6,27 @@ import Sigup from "./components/Sigup";
 import { useContext } from "react";
 import { DataContext } from "./UserContext";
 import { Routes } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import UserDashboard from "./components/UserDashboard";
+import Uploadvdo from "./components/Uploadvdo";
 
 export default function App() {
-  const { sigup, login } = useContext(DataContext);
+  const ctx = useContext(DataContext);
+  if (!ctx) return null;
+  const { sigup, login } = ctx;
 
   return (
-    <>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sigup" element={<Sigup />} />
+        <Route path="/signup" element={<Sigup />} />
+        <Route path="/Upload" element={<Uploadvdo />} />
+        <Route path="/Dashboard" element={<UserDashboard />} />
       </Routes>
-      {sigup && <Sigup />}
-      {login && <Login />}
-    </>
+       <Toaster position="top-right" />
+    </BrowserRouter>
   );
 }

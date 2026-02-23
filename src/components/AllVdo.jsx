@@ -7,7 +7,9 @@ import { DataContext } from "../UserContext";
 
 function AllVdo() {
 
-  const { videos, setVideos } = useContext(DataContext);
+  const ctx = useContext(DataContext);
+  if (!ctx) return null;
+  const { videos, setVideos } = ctx;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

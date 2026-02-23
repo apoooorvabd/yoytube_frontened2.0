@@ -16,12 +16,12 @@ function Card_for_vd0({ video }) {
       <div className="px-3 sticky bottom-0 h-[10%] flex justify-start items-center gap-1 bg-red-100">
         <img
           className="w-10 h-10 rounded-full mr-2"
-          src={video.owner.avatar}
+          // src={video.owner.avatar}
           alt="Author Avatar"
         />
         <div className="text-sm ">
           <p className="text-gray-900 leading-none">
-            {video.owner.username}
+            {/* {video.owner.username} */}
           </p>
           <p className="text-gray-600">
             {new Date(video.createdAt).toDateString()}
