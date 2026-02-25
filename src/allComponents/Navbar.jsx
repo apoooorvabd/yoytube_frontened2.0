@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { useContext } from "react";
-import { DataContext } from "../UserContext";
+import { DataContext } from "../Context/UserContext";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +11,11 @@ function Navbar() {
 
   if (!ctx) return null;
   return (
-    <nav className="flex items-center justify-between p-4 bg-blue-50 text-gray-100 shadow-md">
+    <nav className="theme-card flex items-center justify-between p-4 animate-fade-up">
       
       {/* Logo */}
       <div className="flex items-center space-x-2">
-        <img src="/image.png" alt="Logo" className="h-16 w-32" />
+        <img src="/image.png" alt="Logo" className="h-12 w-28 object-contain" />
         {/* <span className="text-2xl font-bold text-indigo-500">नव्य ईक्षण</span> */}
       </div>
 
@@ -26,14 +26,7 @@ function Navbar() {
           <li key={link}>
             <a
               href="#"
-              className="
-                px-3 py-1 rounded-md 
-                bg-gray-800 text-gray-100
-                border border-transparent
-                hover:bg-indigo-600 hover:text-white
-                transition-colors duration-200
-                shadow-sm
-              "
+              className="px-3 py-1 rounded-md text-red-700 hover:text-white hover:bg-red-600 transition-colors duration-200 shadow-sm"
             >
               {link}
             </a>
@@ -42,7 +35,7 @@ function Navbar() {
 
         {/* Sign In Button */}
         <li>
-          <Button variant="default" className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 shadow-md"
+          <Button variant="default" className="theme-accent px-4 py-2 shadow-md"
            onClick={()=>navigate("/Signup")}
           >
             Sign In

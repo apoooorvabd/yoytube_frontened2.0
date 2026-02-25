@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme helpers: white + red accent and simple animations */
+.theme-card {
+  @apply bg-white text-red-700 rounded-lg shadow-lg;
+}
+.theme-accent {
+  @apply text-white bg-red-600 hover:bg-red-700;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 380ms ease-out both;
+}
+
+/* input focus accent */
+.focus-red:focus {
+  @apply ring-2 ring-red-400 outline-none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

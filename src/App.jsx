@@ -1,16 +1,17 @@
 import React from "react";
-import Login from "./components/Login";
-import Hero from "./components/Hero";
-import { Card } from "./components/ui/card";
-import Sigup from "./components/Sigup";
+import Login from "./allComponents/Login";
+import Hero from "./allComponents/Hero";
+import { Card } from "./allComponents/ui/card";
+import Sigup from "./allComponents/Sigup";
 import { useContext } from "react";
-import { DataContext } from "./UserContext";
+import { DataContext } from "./Context/UserContext";
 import { Routes } from "react-router-dom";
 import { BrowserRouter} from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import UserDashboard from "./components/UserDashboard";
-import Uploadvdo from "./components/Uploadvdo";
+import UserDashboard from "./allComponents/UserDashboard";
+import Uploadvdo from "./allComponents/Uploadvdo";
+import Showvdo from "./allComponents/Showvdo";
 
 export default function App() {
   const ctx = useContext(DataContext);
@@ -25,7 +26,8 @@ export default function App() {
         <Route path="/signup" element={<Sigup />} />
         <Route path="/Upload" element={<Uploadvdo />} />
         <Route path="/Dashboard" element={<UserDashboard />} />
-      </Routes>
+        <Route path="/videos/:id" element={<Showvdo />} />      
+</Routes>
        <Toaster position="top-right" />
     </BrowserRouter>
   );

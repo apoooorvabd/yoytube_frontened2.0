@@ -1,8 +1,8 @@
-import Card_for_vd0 from "./ui/Card_for_vd0"
+import Card_for_vd0 from "./Card_for_vd0"
 import axios from "axios";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { DataContext } from "../UserContext";
+import { DataContext } from "../Context/UserContext";
 
 
 function AllVdo() {
@@ -27,9 +27,20 @@ function AllVdo() {
 
   useEffect(() => {
     const getallvdo = async () => {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (!storedUser?.accessToken) {
+        setError("No user token found. Please log in to view videos.");
+        setLoading(false);
+        return;
+      }
       try {
         const { data } = await axios.get(
-          "http://localhost:8000/api/v1/videos/"
+          "http://localhost:8000/api/v1/videos/",
+          {
+            headers: {
+              Authorization: `Bearer ${storedUser.accessToken}`,
+            },
+          }
         );
 
         const videosData = data?.data?.videos || [];
@@ -50,8 +61,8 @@ function AllVdo() {
 
   return (
     <div>
-      <section className="container mx-auto px-6 py-10">
-        {loading && <p className="text-center">Loading videos...</p>}
+      <section className="container mx-auto px-6 py-10 animate-fade-up">
+        {loading && <p className="text-center text-red-600">Loading videos...</p>}
         {error && <p className="text-center text-red-600">{error}</p>}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

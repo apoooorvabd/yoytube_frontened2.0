@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/allComponents/ui/button"
+import { Input } from "@/allComponents/ui/input"
+import { Label } from "@/allComponents/ui/label"
 import { FaUser, FaLock } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { toast } from "react-hot-toast"
 import { useContext } from "react"
-import { DataContext } from "../UserContext"
+import { DataContext } from "../Context/UserContext"
 
 
 function Login(){
@@ -30,34 +30,28 @@ function Login(){
       console.log(response.data) // Handle the response as needed
       // navigate or handle success here
       toast.success(`Welcome back, ${response.data.data.user.fullName}`);
-      setUser(response.data.data.user);
+      setUser(response.data.data);
+      localStorage.setItem("user", JSON.stringify(response.data.data));
+
 setTimeout(() => {
   navigate("/Dashboard");
 }, 2000);
+console.log("USER OBJECT:", user);
+console.log("ACCESS TOKEN:", user?.accessToken);
     } catch (err) {
       console.error(err)
     }
   }
 
   return (
-  <div
-    className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden"
-    style={{
-      backgroundImage:
-        "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    {/* Dark overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
-
-    {/* Animated floating glow */}
-    <div className="absolute w-96 h-96 bg-indigo-500/30 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
-    <div className="absolute w-96 h-96 bg-pink-500/20 blur-3xl rounded-full bottom-10 right-10 animate-pulse"></div>
+  <div className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden bg-white">
+    {/* Soft red glow accents */}
+    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/80 to-white/60 pointer-events-none"></div>
+    <div className="absolute w-80 h-80 bg-red-500/10 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
+    <div className="absolute w-80 h-80 bg-red-300/6 blur-3xl rounded-full bottom-10 right-10 animate-pulse"></div>
 
     {/* Login Card */}
-    <div className="relative z-10 w-full max-w-4xl backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02]">
+    <div className="relative z-10 w-full max-w-4xl backdrop-blur-xl bg-white border border-red-50 rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] animate-fade-up">
       <div className="grid grid-cols-1 md:grid-cols-2">
 
         {/* Left Section */}
@@ -70,8 +64,8 @@ setTimeout(() => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/80 via-purple-600/70 to-pink-500/70 flex items-center justify-center p-8">
-            <div className="text-white text-center animate-fade-in">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-700/80 via-red-600/70 to-red-500/70 flex items-center justify-center p-8">
+              <div className="text-white text-center animate-fade-in">
               <h3 className="text-3xl font-bold mb-3">
                 Welcome Back 🚀
               </h3>
@@ -83,9 +77,9 @@ setTimeout(() => {
         </div>
 
         {/* Right Section */}
-        <div className="p-8 md:p-12 bg-white/90 backdrop-blur-md animate-fade-in">
+          <div className="p-8 md:p-12 bg-white backdrop-blur-md animate-fade-up">
           <header className="mb-8 text-center">
-            <div className="bg-indigo-100 text-indigo-700 rounded-full h-14 w-14 mx-auto flex items-center justify-center shadow-md animate-bounce">
+            <div className="bg-red-100 text-red-700 rounded-full h-14 w-14 mx-auto flex items-center justify-center shadow-md animate-bounce">
               <FaUser size={20} />
             </div>
             <h2 className="text-3xl font-bold text-gray-800 mt-4">
@@ -117,7 +111,7 @@ setTimeout(() => {
                     },
                   })}
                   required
-                  className="pl-10 transition focus:ring-2 focus:ring-indigo-400"
+                  className="pl-10 transition focus-visible:ring-red-400"
                   placeholder="Email address"
                 />
               </div>
@@ -144,7 +138,7 @@ setTimeout(() => {
                     required: "Password is required",
                   })}
                   required
-                  className="pl-10 transition focus:ring-2 focus:ring-indigo-400"
+                  className="pl-10 transition focus-visible:ring-red-400"
                   placeholder="Enter password"
                 />
               </div>
@@ -158,7 +152,7 @@ setTimeout(() => {
             {/* Button */}
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-purple-600 hover:to-pink-500 transition-all duration-300 shadow-lg"
+              className="w-full theme-accent transition-all duration-300 shadow-lg"
               disabled={isSubmitting}
             >
               Sign In
@@ -169,7 +163,7 @@ setTimeout(() => {
               Don't have an account?{" "}
               <button
                 onClick={() => navigate("/Signup")}
-                className="text-indigo-600 font-medium hover:underline"
+                className="text-red-600 font-medium hover:underline"
               >
                 Sign up
               </button>
