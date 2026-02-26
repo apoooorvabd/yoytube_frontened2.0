@@ -12,6 +12,16 @@ import { Toaster } from "react-hot-toast";
 import UserDashboard from "./allComponents/UserDashboard";
 import Uploadvdo from "./allComponents/Uploadvdo";
 import Showvdo from "./allComponents/Showvdo";
+<<<<<<< HEAD
+import { useParams } from "react-router-dom";
+
+// wrapper that keys Showvdo by id so it fully remounts when the parameter changes
+function VideoWrapper() {
+  const { id } = useParams();
+  return <Showvdo key={id} />;
+}
+=======
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
 
 export default function App() {
   const ctx = useContext(DataContext);
@@ -26,7 +36,15 @@ export default function App() {
         <Route path="/signup" element={<Sigup />} />
         <Route path="/Upload" element={<Uploadvdo />} />
         <Route path="/Dashboard" element={<UserDashboard />} />
+<<<<<<< HEAD
+        {/* wrap Showvdo in a wrapper with key so it remounts when id changes */}
+        <Route
+          path="/videos/:id"
+          element={<VideoWrapper />}
+        />
+=======
         <Route path="/videos/:id" element={<Showvdo />} />      
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
 </Routes>
        <Toaster position="top-right" />
     </BrowserRouter>

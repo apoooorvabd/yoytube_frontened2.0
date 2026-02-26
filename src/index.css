@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+
 /* Theme helpers: white + red accent and simple animations */
 .theme-card {
   @apply bg-white text-red-700 rounded-lg shadow-lg;

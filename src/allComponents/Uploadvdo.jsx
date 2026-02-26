@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
 import axios from "axios";
 import { useState } from "react";
 
@@ -14,6 +18,56 @@ function Uploadvdo() {
         setError("");
 
         try {
+<<<<<<< HEAD
+            // Validate inputs
+            if (!title || !description) {
+                setError("Title and description are required");
+                setUploading(false);
+                return;
+            }
+
+            if (!videoFile) {
+                setError("Video file is required");
+                setUploading(false);
+                return;
+            }
+
+            const formDataToSend = new FormData();
+            formDataToSend.append("videoFile", videoFile);
+            if (thumbnailFile) {
+                formDataToSend.append("thumbnail", thumbnailFile);
+            }
+            formDataToSend.append("title", title);
+            formDataToSend.append("description", description);
+
+            const storedUser = JSON.parse(localStorage.getItem("user"));
+            if (!storedUser?.accessToken) {
+                setError("You must be logged in to upload videos");
+                setUploading(false);
+                return;
+            }
+
+            const response = await axios.post("http://localhost:8000/api/v1/videos/", formDataToSend, {
+                headers: {
+                    Authorization: `Bearer ${storedUser.accessToken}`,
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            
+            alert("Video uploaded successfully!");
+            console.log("Success:", response.data);
+            
+            // Reset form
+            setTitle("");
+            setDescription("");
+            setVideoFile(null);
+            setThumbnailFile(null);
+            
+        } catch (err) {
+            console.error("Upload error:", err);
+            const errorMessage = err.response?.data?.message || err.message || "Upload failed";
+            setError(errorMessage);
+=======
             const formDataToSend = new FormData();
             if (videoFile) formDataToSend.append("videoFile", videoFile);
             if (thumbnailFile) formDataToSend.append("thumbnail", thumbnailFile);
@@ -31,6 +85,7 @@ function Uploadvdo() {
             
         } catch (err) {
             console.error("Upload error:", err);
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
         } finally {
             setUploading(false);
         }
@@ -38,6 +93,16 @@ function Uploadvdo() {
 return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md animate-fade-up">
         <h2 className="text-2xl font-bold mb-4">Upload New Video</h2>
+<<<<<<< HEAD
+        
+        {error && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-red-700">{error}</p>
+            </div>
+        )}
+        
+=======
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
         <form onSubmit={onSubmit} className="space-y-4">
             <div>
                 <label className="block text-sm font-medium text-gray-700">Title</label>

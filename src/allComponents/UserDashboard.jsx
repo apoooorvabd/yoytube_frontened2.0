@@ -46,8 +46,12 @@ export default function UserDashboard() {
         }
 
         fetchVideos();
+<<<<<<< HEAD
+    }, [navigate]);
+=======
         return () => {};
     }, [user?.accessToken]);
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
     return (
         <div className="min-h-screen bg-white py-10 px-4">
                 <div className="max-w-6xl mx-auto space-y-8">

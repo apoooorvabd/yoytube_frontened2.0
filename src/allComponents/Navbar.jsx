@@ -25,7 +25,11 @@ function Navbar() {
         {["Home", "About", "Contact"].map((link) => (
           <li key={link}>
             <a
+<<<<<<< HEAD
+              href="#Home"
+=======
               href="#"
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
               className="px-3 py-1 rounded-md text-red-700 hover:text-white hover:bg-red-600 transition-colors duration-200 shadow-sm"
             >
               {link}
