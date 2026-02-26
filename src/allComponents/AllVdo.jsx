@@ -18,7 +18,11 @@ function AllVdo() {
       _id: "sample1",
       title: "Sample Flower Video",
       description: "A fallback sample video",
+<<<<<<< HEAD
       thumbnail: "/hero.jfif",
+=======
+      thumbnail: "/hero_sec.png",
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
       owner: { username: "Demo", avatar: "/logo.png" },
       createdAt: new Date().toISOString(),
       views: 123,
@@ -27,6 +31,7 @@ function AllVdo() {
 
   useEffect(() => {
     const getallvdo = async () => {
+<<<<<<< HEAD
       try {
         const storedUser = JSON.parse(localStorage.getItem("user"));
         
@@ -40,6 +45,15 @@ function AllVdo() {
 
         console.log("Fetching videos with token:", storedUser.accessToken.substring(0, 20) + "...");
         
+=======
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (!storedUser?.accessToken) {
+        setError("No user token found. Please log in to view videos.");
+        setLoading(false);
+        return;
+      }
+      try {
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
         const { data } = await axios.get(
           "http://localhost:8000/api/v1/videos/",
           {
@@ -49,6 +63,7 @@ function AllVdo() {
           }
         );
 
+<<<<<<< HEAD
         console.log("API Response:", data);
         const videosData = data?.data?.videos || [];
         console.log("Fetched videos:", videosData);
@@ -63,6 +78,15 @@ function AllVdo() {
       } catch (err) {
         console.error("Error fetching videos:", err.response?.data || err.message);
         setError("Could not fetch videos. Showing sample data.");
+=======
+        const videosData = data?.data?.videos || [];
+        console.log("Fetched videos:", videosData);
+
+        setVideos(videosData);
+      } catch (err) {
+        console.error("Error fetching videos:", err);
+        setError("Could not fetch videos from API. Showing sample data.");
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
         setVideos(sampleVideos);
       } finally {
         setLoading(false);
@@ -76,6 +100,7 @@ function AllVdo() {
     <div>
       <section className="container mx-auto px-6 py-10 animate-fade-up">
         {loading && <p className="text-center text-red-600">Loading videos...</p>}
+<<<<<<< HEAD
         {error && <p className="text-center text-red-500 mb-6">{error}</p>}
 
         {videos && videos.length > 0 ? (
@@ -87,6 +112,15 @@ function AllVdo() {
         ) : (
           !loading && <p className="text-center text-gray-600">No videos available</p>
         )}
+=======
+        {error && <p className="text-center text-red-600">{error}</p>}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {videos.map((video) => (
+            <Card_for_vd0 key={video._id} video={video} />
+          ))}
+        </div>
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
       </section>
     </div>
   );

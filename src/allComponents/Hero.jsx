@@ -14,8 +14,13 @@ function Hero() {
       <Navbar />
 
       {/* Hero Section */}
+<<<<<<< HEAD
       <section id="Home" className=" h-[20%] bg-gradient-to-r from-red-600 to-red-400 text-white ">
         <div className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-10 h-72 ">
+=======
+      <section id="#Home" className="relative h-[30%] bg-gradient-to-r from-red-600 to-red-400 text-white">
+        <div className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-10">
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
           
           {/* Left Content */}
           <div className="flex-1 text-center md:text-left animate-fade-up">
@@ -49,6 +54,7 @@ function Hero() {
       </section>
       {/* Video Cards Section */}
       <AllVdo />
+<<<<<<< HEAD
       <section id="About" className="py-20 bg-black">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl text-yellow-300 font-bold mb-6 text-center">About नव्य ईक्षण</h2>
@@ -56,11 +62,21 @@ function Hero() {
             नव्य ईक्षण is a video sharing platform built with React and Shadcn UI. It allows users to create, share, and explore amazing videos. Whether you're a content creator or just looking for some great videos to watch, नव्य ईक्षण has something for everyone.
           </p>
           <p className="text-lg text-gray-100">
+=======
+      <section id="#About" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-6 text-center">About नव्य ईक्षण</h2>
+          <p className="text-lg text-gray-700 mb-4">
+            नव्य ईक्षण is a video sharing platform built with React and Shadcn UI. It allows users to create, share, and explore amazing videos. Whether you're a content creator or just looking for some great videos to watch, नव्य ईक्षण has something for everyone.
+          </p>
+          <p className="text-lg text-gray-700">
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
             Join our community today and start sharing your creativity with the world!
           </p>
         </div>
 
       </section>
+<<<<<<< HEAD
       <section id="Contact" className="py-20 bg-gradient-to-r from-red-600 to-red-400 text-white hover:bg-gradient-to-r hover:from-red-700 hover:to-red-500 transition-all">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-6 text-center text-white">Contact Us</h2>
@@ -78,6 +94,10 @@ function Hero() {
           &copy; {new Date().getFullYear()} नव्य ईक्षण. All rights reserved.
         </div>  
         </section>
+=======
+      
+
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
     </div>
   );
 }

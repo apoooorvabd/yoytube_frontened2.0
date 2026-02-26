@@ -3,14 +3,18 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "react-hot-toast"
+<<<<<<< HEAD
 import { set } from "zod"
 import AllVdo from "./AllVdo"
 import Sidevdoinvdo from "./Sidevdoinvdo"
+=======
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
 
 function Showvdo() {
   const { id } = useParams()
   const [video, setVideo] = useState(null)
   const [loading, setLoading] = useState(true)
+<<<<<<< HEAD
   const [vdoowner, setVdoOwner] = useState(null);
 
   // log changes and ensure loading state resets when id changes
@@ -43,6 +47,23 @@ function Showvdo() {
       }
     }
 
+=======
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/v1/videos/${id}`)
+        console.log("ii");
+        
+        setVideo(response.data.data)
+        setLoading(false)
+      } catch (err) {
+        console.error(err)
+        toast.error("Failed to load video")
+        setLoading(false)
+      }
+    }
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
     fetchVideo()
   }, [id])
 
@@ -50,6 +71,7 @@ function Showvdo() {
   if (!video) return <div className="p-6">Video not found.</div>
 
   return (
+<<<<<<< HEAD
   <div className="min-h-screen bg-white text-gray-900 px-4 md:px-8 py-6">
 
     <div className="flex flex-col lg:flex-row gap-8">
@@ -170,3 +192,17 @@ function Showvdo() {
 }
 
 export default Showvdo
+=======
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">{video.title}</h1>
+      <video controls className="w-full h-auto rounded-lg shadow-md">
+        <source src={video.url} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <p className="mt-4 text-gray-600">{video.description}</p>
+    </div>
+  )
+}
+
+export default Showvdo  
+>>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
