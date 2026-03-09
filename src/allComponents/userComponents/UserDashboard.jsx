@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { DataContext } from '../Context/UserContext';
+import { DataContext } from '../../Context/UserContext';
 import Uploadvdo from './Uploadvdo';
 import { useNavigate } from 'react-router-dom';
-import { Card } from './ui/card';
-import Card_for_vd0 from './Card_for_vd0';
+import { Card } from '../ui/card';
+import Card_for_vd0 from '../vdoComponents/Card_for_vd0';
+import { CgDetailsMore } from "react-icons/cg";
+import UserMore from './Userfunctionalitiesboard';
+
 
 export default function UserDashboard() {
     const navigate = useNavigate();
 
     const { user, setUser } = useContext(DataContext);
+    const {more,setMore}=useContext(DataContext);
     const [videos, setVideos] = useState([]);
     const storedUser = JSON.parse(localStorage.getItem("user"));
     
@@ -23,7 +27,11 @@ export default function UserDashboard() {
                     return;
                 }
 
-                setUser(storedUser);
+                // only update context if it isn't already set or has changed
+                if (!user || user.accessToken !== storedUser.accessToken) {
+                    setUser(storedUser);
+                }
+
                 const response = await axios.get(
                     "http://localhost:8000/api/v1/dashboard/videos",
                     {
@@ -36,6 +44,8 @@ export default function UserDashboard() {
                 const fetched = response.data?.data || [];
                 setVideos(fetched);
                 console.log("fetched videos:", fetched);
+                console.log(storedUser, "user is here", user);
+
             } catch (err) {
                 console.error(err);
                 if (err.response?.status === 401) {
@@ -44,21 +54,20 @@ export default function UserDashboard() {
                 }
             }
         }
-
         fetchVideos();
-<<<<<<< HEAD
     }, [navigate]);
-=======
-        return () => {};
-    }, [user?.accessToken]);
->>>>>>> 151fbb083222d386ef954a4b9934c9b6101d0f7e
     return (
         <div className="min-h-screen bg-white py-10 px-4">
+            {more && <UserMore/>}
+            <div className='font-bold text-2xl flex gap-4 fixed right-3 top-2'onClick={()=>{setMore(true)}}><CgDetailsMore className='text-4xl'/> 
+        </div>
+
                 <div className="max-w-6xl mx-auto space-y-8">
+
                     <div className="theme-card shadow rounded-lg p-6 md:flex md:items-center md:justify-between animate-fade-up">
                     <div className="flex items-center gap-4">
                         <img
-                            src={user?.avatar}
+                            src={storedUser?.avatar}
                             alt={user?.name}
                                 className="w-20 h-20 rounded-full object-cover ring-2 ring-red-100"
                         />

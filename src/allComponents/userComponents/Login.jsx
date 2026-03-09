@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { toast } from "react-hot-toast"
 import { useContext } from "react"
-import { DataContext } from "../Context/UserContext"
+import { DataContext } from "../../Context/UserContext"
 
 
 function Login(){
