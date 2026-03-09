@@ -9,14 +9,12 @@ const UserContext = ({ children }) => {
   
   const [videos, setVideos] = useState([]);
   const [sigup,setSignup]=useState(false);
-  const [formdata,setFormdata]=useState({
-    username:"",
-    email:"",
-    password:"",
-    fullname:"",
-    avatar:null,
-    cover:null
-  });
+  const [more,setMore]=useState(false);
+  const [vdofunc,setVdofunc]=useState(true);
+  const [newPlaylistS,setNewPlalistS]=useState(false);
+  const [vdoTobeAdded,setVdoTobeAdded]=useState("");
+  const [subscribedChannel, setSubscribedChannel] = useState([]);
+ 
 
   return (
     <DataContext.Provider
@@ -28,7 +26,17 @@ const UserContext = ({ children }) => {
         videos,
         setVideos,
         sigup,
-        setSignup
+        setSignup,
+        more,
+        setMore,
+        vdofunc,
+        setVdofunc,
+        newPlaylistS,
+        setNewPlalistS,
+        vdoTobeAdded,
+        setVdoTobeAdded,
+        subscribedChannel,
+        setSubscribedChannel
       }}
     >
       {children}

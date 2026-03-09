@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { DataContext } from "../Context/UserContext";
+import { DataContext } from "../../Context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ function Signup() {
 
       // Let the browser set the Content-Type with the proper boundary.
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/register",
+        "https://youtubebackend-production.up.railway.app/api/v1/users/register",
         formData
       );
       console.log("Signup successful:", response.data);
